@@ -1,26 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+     <ClickerOne/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ClickerOne from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    ClickerOne
   }
 }
 </script>
 
 <style>
+*
+{
+  margin: 0;
+  box-sizing: border-box;
+  outline: none !important;
+}
+body
+{
+  background-color: #020212;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100vh;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: grid;
+  place-items: center;
 }
 </style>

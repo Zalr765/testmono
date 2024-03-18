@@ -1,58 +1,71 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="counter">
+    <img src="../assets/bronze-coin-swiss-franc-icon.svg" alt="">
+    {{counter}}
   </div>
+  <div class="coin" @click='CoinPlus' :class="{ 'scale': isClicked }"></div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+  data()
+  {
+    let counter;
+    document.cookie.match(/counter=(.+?)(;|$)/) ? counter = Number(document.cookie.match(/counter=(.+?)(;|$)/)[1]) : counter = 0
+    return{
+      counter,
+      clickPower: 1,
+      isClicked:false,
+    }
+  },
+  methods:
+  {
+    CoinPlus()
+    {
+      this.counter+=this.clickPower;
+      this.isClicked = true;
+      setTimeout(()=> this.isClicked = false, 40)
+      document.cookie = `counter = ${this.counter}`
+    },
+  },
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.counter
+{
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: calc((1vw + 1vh) * 1.8);
+  font-family: Arial;
+  position: absolute;
+  top: calc((1vw + 1vh) * 2);
+  left: calc((1vw + 1vh) * 3);
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.counter img
+{
+  margin-right: calc((1vw + 1vh)*1.3);
+  width: calc((1vw + 1vh) * 2);
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.coin
+{
+  width: calc((1vw + 1vh) * 17);
+  height: calc((1vw + 1vh) * 17);
+  background-image: url('../assets/bronze-coin-swiss-franc-icon.svg');
+  background-size: contain;
+  transition: .03s;
+  position: relative;
+  background-repeat: no-repeat;
 }
-a {
-  color: #42b983;
+.scale
+{
+  transform: scale(.93);
 }
 </style>
