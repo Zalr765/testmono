@@ -3,7 +3,6 @@
     <img src="../assets/bronze-coin-swiss-franc-icon.svg" alt="">
     {{counter}}
   </div>
-  <div>{{window.Telegram.WebApp.initDataUnsafe?.user?.username}}</div>
   <div class="coin" @click='CoinPlus' :class="{ 'scale': isClicked }"></div>
 </template>
 
