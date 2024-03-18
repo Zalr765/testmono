@@ -32,7 +32,7 @@ export default {
     },
   },
   mounted(){
-    this.tg = window.Telegram.WebApp.initDataUnsafe?.user?.username 
+    this.tg = window.Telegram.WebApp.initDataUnsafe?.user?.id
   }
 }
 </script>
