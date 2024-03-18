@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 export default {
   data()
   {
@@ -16,6 +17,7 @@ export default {
       counter,
       clickPower: 1,
       isClicked:false,
+      tg : null
     }
   },
   methods:
@@ -26,8 +28,12 @@ export default {
       this.isClicked = true;
       setTimeout(()=> this.isClicked = false, 40)
       document.cookie = `counter = ${this.counter}`
+      alert(this.tg)
     },
   },
+  mounted(){
+    this.tg = window.Telegram.WebApp.initDataUnsafe?.user?.username 
+  }
 }
 </script>
 
