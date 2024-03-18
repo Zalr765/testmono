@@ -1,7 +1,7 @@
 <template>
   <div class="counter">
     <img src="../assets/bronze-coin-swiss-franc-icon.svg" alt="">
-    {{counter}}
+    {{ counter }}
   </div>
   <div class="coin" @click='CoinPlus' :class="{ 'scale': isClicked }"></div>
 </template>
@@ -11,10 +11,8 @@
 export default {
   data()
   {
-    let counter;
-    document.cookie.match(/counter=(.+?)(;|$)/) ? counter = Number(document.cookie.match(/counter=(.+?)(;|$)/)[1]) : counter = 0
     return{
-      counter,
+      counter: 0,
       clickPower: 1,
       isClicked:false,
       tg : null
@@ -27,7 +25,6 @@ export default {
       this.counter+=this.clickPower;
       this.isClicked = true;
       setTimeout(()=> this.isClicked = false, 40)
-      document.cookie = `counter = ${this.counter}`
       alert(this.tg)
     },
   },
